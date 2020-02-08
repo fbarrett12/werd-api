@@ -7,6 +7,10 @@ class SlangsController < ApplicationController
         @slang = Slang.create(slang_params)
     end
 
+    def show
+        @slang = Slang.find(params[:id])
+    end
+
     private
 
     def slang_params
