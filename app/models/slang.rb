@@ -1,0 +1,2 @@
+class Slang < ApplicationRecord
+end
