@@ -12,6 +12,6 @@ class ChoicesController < ApplicationController
     private
 
     def choice_params
-        params.permit(:definition)
+        params.require(:choices).permit(:definition)
     end
 end
