@@ -17,7 +17,7 @@ class SlangsController < ApplicationController
     private
 
     def slang_params
-        params.permit(:term, :definition)
+        params.require(:slangs).permit(:term, :definition)
     end
 end
 
