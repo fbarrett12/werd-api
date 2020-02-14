@@ -42,3 +42,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Add serializer
 gem 'fast_jsonapi'
+ 
+# Add Nokogiri and HTTParty for web scraping
+gem 'nokogiri'
+gem'httparty'
