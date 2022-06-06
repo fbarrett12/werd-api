@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_08_030450) do
+ActiveRecord::Schema.define(version: 2022_06_06_162700) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,27 @@ ActiveRecord::Schema.define(version: 2020_02_08_030450) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.bigint "slang_id", null: false
+    t.bigint "choice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["choice_id"], name: "index_questions_on_choice_id"
+    t.index ["slang_id"], name: "index_questions_on_slang_id"
+  end
+
   create_table "slangs", force: :cascade do |t|
     t.text "term"
     t.text "definition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "longitude"
+    t.string "latitude"
   end
 
+  add_foreign_key "questions", "choices"
+  add_foreign_key "questions", "slangs"
 end
