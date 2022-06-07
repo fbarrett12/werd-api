@@ -1,12 +1,12 @@
 class SlangsController < ApplicationController
     def index
         @slangs = Slang.all
-        render json: SlangSerializer.new(@slangs).serializable_hash
+        render json: SlangSerializer.new(@slangs).serializable_hash.to_json
     end
 
     def create
         @slang = Slang.create(slang_params)
-        render json: SlangSerializer.new(@slang).serializable_hash
+        render json: SlangSerializer.new(@slang).serializable_hash.to_json
     end
 
     def show
@@ -22,7 +22,7 @@ class SlangsController < ApplicationController
     private
 
     def slang_params
-        params.require(:slang).permit(:term, :definition)
+        params.require(:slang).permit(:term, :definition, :city, :state, :country, :longitude, :latitude)
     end
 end
 
