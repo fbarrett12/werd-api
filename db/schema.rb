@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_162700) do
+ActiveRecord::Schema.define(version: 2022_06_07_204401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "choices", force: :cascade do |t|
     t.text "definition"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "city"
+    t.string "state"
+    t.string "country"
+    t.string "longitude"
+    t.string "latitude"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -35,13 +45,11 @@ ActiveRecord::Schema.define(version: 2022_06_06_162700) do
     t.text "definition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "city"
-    t.string "state"
-    t.string "country"
-    t.string "longitude"
-    t.string "latitude"
+    t.bigint "location_id" 
+    t.index ["location_id"], name: "index_slangs_on_location_id"
   end
 
   add_foreign_key "questions", "choices"
   add_foreign_key "questions", "slangs"
+  add_foreign_key "slangs", "locations"
 end
