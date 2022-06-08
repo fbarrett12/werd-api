@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2022_06_07_204401) do
     t.text "definition"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "location_id", null: false
+    t.bigint "location_id" 
     t.index ["location_id"], name: "index_slangs_on_location_id"
   end
 

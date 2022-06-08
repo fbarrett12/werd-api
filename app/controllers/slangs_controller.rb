@@ -1,4 +1,6 @@
 class SlangsController < ApplicationController
+    before_action :set_product, only: [:show, :update, :destroy]
+
     def index
         @slangs = Slang.all
         render json: SlangSerializer.new(@slangs).serializable_hash.to_json
@@ -14,6 +16,18 @@ class SlangsController < ApplicationController
         render json: SlangSerializer.new(@slang).serializable_hash
     end
 
+    def update
+        if @slang.update(slang_params)
+          render json: SlangSerializer.new(@slang).serializable_hash.to_json
+        else
+          render json: @slang.errors, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @slang.destroy
+    end
+
     def shuffledWords
         words = Slang.scrambler
         render json: SlangSerializer.new(words).serializable_hash.to_json
@@ -21,8 +35,12 @@ class SlangsController < ApplicationController
 
     private
 
+    def set_product
+        @slang = Slang.find(params[:id])
+      end
+
     def slang_params
-        params.require(:slang).permit(:term, :definition, :city, :state, :country, :longitude, :latitude)
+        params.require(:slang).permit(:term, :definition, :location_id)
     end
 end
 

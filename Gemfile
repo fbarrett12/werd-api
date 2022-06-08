@@ -46,3 +46,6 @@ gem 'fast_jsonapi'
 # Add Nokogiri and HTTParty for web scraping
 gem 'nokogiri'
 gem'httparty'
+
+# Reset primary key when seeding
+gem 'activerecord-reset-pk-sequence', '~> 0.2.0'
