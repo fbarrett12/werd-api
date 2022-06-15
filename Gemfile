@@ -44,8 +44,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'fast_jsonapi'
  
 # Add Nokogiri and HTTParty for web scraping
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.13.6'
 gem'httparty'
 
 # Reset primary key when seeding
 gem 'activerecord-reset-pk-sequence', '~> 0.2.0'
+
